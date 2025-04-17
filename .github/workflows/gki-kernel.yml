@@ -215,7 +215,9 @@ jobs:
             echo "Applying SUSFS patches for Official KernelSU..."
             cd ./KernelSU
             cp ../../susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch ./
+            cp ../../kernel_patches/hooks/core_hook.c_fix.patch ./
             patch -p1 --forward < 10_enable_susfs_for_ksu.patch
+            patch -p1 --forward < core_hook.c_fix.patch
           elif [ "${{ inputs.kernelsu_variant }}" == "Next" ]; then
             echo "Applying SUSFS patches for KernelSU-Next..."
             cd ./KernelSU-Next
@@ -249,10 +251,10 @@ jobs:
           echo "Changing to configuration directory: $CONFIG..."
           cd "$CONFIG/common"
 
-          #if [ "${{ inputs.kernelsu_variant }}" == "Official" ]; then
-          #  echo "Applying hooks for Official KernelSU..."
-          #  cp ../../kernel_patches/hooks/ksu_hooks.patch ./
-          #  patch -p1 -F 3 < ksu_hooks.patch
+          if [ "${{ inputs.kernelsu_variant }}" == "Official" ]; then
+            echo "Applying hooks for Official KernelSU..."
+            cp ../../kernel_patches/hooks/ksu_hooks.patch ./
+            patch -p1 -F 3 < ksu_hooks.patch
           if [ "${{ inputs.kernelsu_variant }}" == "Next" ]; then
             echo "Applying hooks for KernelSU-Next..."
             cp ../../kernel_patches/next_hooks.patch ./
