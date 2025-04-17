@@ -253,7 +253,7 @@ jobs:
 
           if [ "${{ inputs.kernelsu_variant }}" == "Official" ]; then
             echo "Applying hooks for Official KernelSU..."
-            cp ../../kernel_patches/hooks/ksu_hooks.patch ./
+            cp ../../kernel_patches/ksu_hooks.patch ./
             patch -p1 -F 3 < ksu_hooks.patch
           if [ "${{ inputs.kernelsu_variant }}" == "Next" ]; then
             echo "Applying hooks for KernelSU-Next..."
