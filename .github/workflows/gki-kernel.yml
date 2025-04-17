@@ -215,7 +215,7 @@ jobs:
             echo "Applying SUSFS patches for Official KernelSU..."
             cd ./KernelSU
             cp ../../susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch ./
-            cp ../../kernel_patches/hooks/core_hook.c_fix.patch ./
+            cp ../../kernel_patches/core_hook.c_fix.patch ./
             patch -p1 --forward < 10_enable_susfs_for_ksu.patch
             patch -p1 --forward < core_hook.c_fix.patch
           elif [ "${{ inputs.kernelsu_variant }}" == "Next" ]; then
