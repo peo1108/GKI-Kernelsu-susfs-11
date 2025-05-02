@@ -45,24 +45,24 @@ jobs:
         echo "Applying SUSFS patches..."
            
         git clone https://gitlab.com/simonpunk/susfs4ksu.git -b gki-android14-6.1
-        cp /mnt/kernel_workspace/GKI-Kernelsu-susfs/patches/0001-kernel-patch-susfs-v1.5.5-to-KernelSU-Next-v1.0.5.patch ./KernelSU-Next/
+        cp /mnt/kernel_workspace/GKI-Kernelsu-susfs/patches/kernel-patch-susfs-v1.5.7-to-KernelSU-Next.patch ./KernelSU-Next/
         cp /mnt/kernel_workspace/GKI-Kernelsu-susfs/patches/apk_sign.c_fix.patch ./KernelSU-Next/
         #cp /mnt/kernel_workspace/GKI-Kernelsu-susfs/patches/mksu_susfs.patch ./KernelSU/
         #cp /mnt/kernel_workspace/GKI-Kernelsu-susfs/patches/mksu.fix.patch ./KernelSU/
         cd KernelSU-Next
-        patch -p1 < 0001-kernel-patch-susfs-v1.5.5-to-KernelSU-Next-v1.0.5.patch || true
+        patch -p1 < kernel-patch-susfs-v1.5.7-to-KernelSU-Next.patch || true
         patch -p1 < apk_sign.c_fix.patch || true
         #patch -p1 < mksu_susfs.patch || true
         #patch -p1 < mksu.fix.patch || true
         cd -
         echo "apply patch"
         cp /mnt/kernel_workspace/susfs4ksu/kernel_patches/50_add_susfs_in_gki-android14-6.1.patch /mnt/kernel_workspace/common/
-        cp /mnt/kernel_workspace/GKI-Kernelsu-susfs/patches/next_hooks.patch /mnt/kernel_workspace/common/
+        cp /mnt/kernel_workspace/GKI-Kernelsu-susfs/patches/syscall_hooks.patch /mnt/kernel_workspace/common/
         cp /mnt/kernel_workspace/susfs4ksu/kernel_patches/fs/* /mnt/kernel_workspace/common/fs/
         cp /mnt/kernel_workspace/susfs4ksu/kernel_patches/include/linux/* /mnt/kernel_workspace/common/include/linux/
         cd /mnt/kernel_workspace/common
         patch -p1 < 50_add_susfs_in_gki-android14-6.1.patch || true
-        patch -p1 -F 3 < next_hooks.patch || true
+        patch -p1 -F 3 < syscall_hooks.patch || true
 
     - name: Apply Hide Stuff Patches
       run: |
