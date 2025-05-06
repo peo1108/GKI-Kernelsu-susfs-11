@@ -24,12 +24,12 @@ jobs:
         sudo mkdir -p /mnt/kernel_workspace
         sudo chmod 0777 /mnt/kernel_workspace
         cd /mnt/kernel_workspace
-        git clone https://github.com/izsdeaman97/GKI-Kernelsu-susfs --depth=1
+        git clone https://github.com/Tea1108/GKI-Kernelsu-susfs-11 --depth=1
 
     - name: Download source code
       run: |
         cd /mnt/kernel_workspace
-        repo init --depth=1 --u https://android.googlesource.com/kernel/manifest -b common-android14-6.1-2024-06
+        repo init --depth=1 --u https://android.googlesource.com/kernel/manifest -b common-android14-6.1-2025-05
         repo --trace sync -c -j$(nproc --all) --no-tags --fail-fast
 
     - name: KernelSU / SUSFS / Misc
@@ -45,10 +45,10 @@ jobs:
         echo "Applying SUSFS patches..."
            
         git clone https://gitlab.com/simonpunk/susfs4ksu.git -b gki-android14-6.1
-        cp /mnt/kernel_workspace/GKI-Kernelsu-susfs/patches/kernel-patch-susfs-v1.5.7-to-KernelSU-Next.patch ./KernelSU-Next/
-        #cp /mnt/kernel_workspace/GKI-Kernelsu-susfs/patches/apk_sign.c_fix.patch ./KernelSU-Next/
-        #cp /mnt/kernel_workspace/GKI-Kernelsu-susfs/patches/mksu_susfs.patch ./KernelSU/
-        #cp /mnt/kernel_workspace/GKI-Kernelsu-susfs/patches/mksu.fix.patch ./KernelSU/
+        cp /mnt/kernel_workspace/GKI-Kernelsu-susfs-11/patches/kernel-patch-susfs-v1.5.7-to-KernelSU-Next.patch ./KernelSU-Next/
+        #cp /mnt/kernel_workspace/GKI-Kernelsu-susfs-11/patches/apk_sign.c_fix.patch ./KernelSU-Next/
+        #cp /mnt/kernel_workspace/GKI-Kernelsu-susfs-11/patches/mksu_susfs.patch ./KernelSU/
+        #cp /mnt/kernel_workspace/GKI-Kernelsu-susfs-11/patches/mksu.fix.patch ./KernelSU/
         cd KernelSU-Next
         patch -p1 < kernel-patch-susfs-v1.5.7-to-KernelSU-Next.patch || true
         #patch -p1 < apk_sign.c_fix.patch || true
@@ -66,14 +66,14 @@ jobs:
       run: |
           echo "Changing to configuration directory: /mnt/kernel_workspace/common"
           cd /mnt/kernel_workspace/common
-          cp /mnt/kernel_workspace/GKI-Kernelsu-susfs/patches/syscall_hooks.patch /mnt/kernel_workspace/common/
+          cp /mnt/kernel_workspace/GKI-Kernelsu-susfs-11/patches/syscall_hooks.patch /mnt/kernel_workspace/common/
           patch -p1 -F 3 < syscall_hooks.patch || true
 
     - name: Apply Hide Stuff Patches
       run: |
           # Apply additional patch
            cd /mnt/kernel_workspace/common
-           cp /mnt/kernel_workspace/GKI-Kernelsu-susfs/patches/69_hide_stuff.patch /mnt/kernel_workspace/common/
+           cp /mnt/kernel_workspace/GKI-Kernelsu-susfs-11/patches/69_hide_stuff.patch /mnt/kernel_workspace/common/
            patch -p1 -F 3 < 69_hide_stuff.patch || true
            
     #- name: Config BBR
