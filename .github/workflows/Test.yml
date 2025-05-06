@@ -135,6 +135,7 @@ jobs:
     - name: Build Kernel
       run: |
         cd /mnt/kernel_workspace
+          sed -i '/^[[:space:]]*"protected_exports_list"[[:space:]]*:[[:space:]]*"android\/abi_gki_protected_exports_aarch64",$/d' ./common/BUILD.bazel
           rm -rf ./common/android/abi_gki_protected_exports_*
             sed -i "/stable_scmversion_cmd/s/-maybe-dirty//g" ./build/kernel/kleaf/impl/stamp.bzl
             tools/bazel build --config=fast --stamp //common:kernel_aarch64_dist
