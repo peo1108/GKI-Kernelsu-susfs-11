@@ -47,13 +47,13 @@ jobs:
         git clone https://gitlab.com/simonpunk/susfs4ksu.git -b gki-android14-6.1
         cp /mnt/kernel_workspace/GKI-Kernelsu-susfs-11/patches/kernel-patch-susfs-v1.5.7-to-KernelSU-Next.patch ./KernelSU-Next/
         cp /mnt/kernel_workspace/GKI-Kernelsu-susfs-11/patches/apk_sign.c_fix.patch ./KernelSU-Next/
-        cp /mnt/kernel_workspace/GKI-Kernelsu-susfs-11/patches/mksu_susfs.patch ./KernelSU/
-        cp /mnt/kernel_workspace/GKI-Kernelsu-susfs-11/patches/mksu.fix.patch ./KernelSU/
+        #cp /mnt/kernel_workspace/GKI-Kernelsu-susfs-11/patches/mksu_susfs.patch ./KernelSU/
+        #cp /mnt/kernel_workspace/GKI-Kernelsu-susfs-11/patches/mksu.fix.patch ./KernelSU/
         cd KernelSU-Next
         patch -p1 < kernel-patch-susfs-v1.5.7-to-KernelSU-Next.patch || true
         patch -p1 < apk_sign.c_fix.patch || true
-        patch -p1 < mksu_susfs.patch || true
-        patch -p1 < mksu.fix.patch || true
+        #patch -p1 < mksu_susfs.patch || true
+        #patch -p1 < mksu.fix.patch || true
         cd -
         echo "apply patch"
         cp /mnt/kernel_workspace/susfs4ksu/kernel_patches/50_add_susfs_in_gki-android14-6.1.patch /mnt/kernel_workspace/common/
