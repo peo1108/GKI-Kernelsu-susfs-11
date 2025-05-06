@@ -24,12 +24,12 @@ jobs:
         sudo mkdir -p /mnt/kernel_workspace
         sudo chmod 0777 /mnt/kernel_workspace
         cd /mnt/kernel_workspace
-        git clone https://github.com/izsdeaman97/GKI-Kernelsu-susfs --depth=1
+        git clone https://github.com/Tea1108/GKI-Kernelsu-susfs --depth=1
 
     - name: Download source code
       run: |
         cd /mnt/kernel_workspace
-        repo init --depth=1 --u https://android.googlesource.com/kernel/manifest -b common-android14-6.1-2024-06
+        repo init --depth=1 --u https://android.googlesource.com/kernel/manifest -b common-android14-6.1-2025-01
         repo --trace sync -c -j$(nproc --all) --no-tags --fail-fast
 
     - name: KernelSU / SUSFS / Misc
@@ -102,7 +102,7 @@ jobs:
           
           # Remove check_defconfig
            sed -i 's/check_defconfig//' ./common/build.config.gki
-           sed -i '$s|echo "\$res"|echo "\$res-gb6577b760481-ab12075023"|' ./common/scripts/setlocalversion
+           sed -i '$s|echo "\$res"|echo "\$res-Tea-BuildTest"|' ./common/scripts/setlocalversion
      
     - name: Config Kernel Name
       run: |
