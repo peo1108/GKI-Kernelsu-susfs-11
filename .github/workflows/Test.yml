@@ -36,7 +36,7 @@ jobs:
       run: |
         cd /mnt/kernel_workspace
         echo "Add KernelSU"
-        curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -
+        curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s next
           
     - name: Apply SUSFS Patches
       run: |
@@ -130,7 +130,7 @@ jobs:
           
           # Remove check_defconfig
            sed -i 's/check_defconfig//' ./common/build.config.gki
-           sed -i '$s|echo "\$res"|echo "\$res-Vvip-Tea+"|' ./common/scripts/setlocalversion
+           sed -i '$s|echo "\$res"|echo "\$res-Duyn-iu-Tea+"|' ./common/scripts/setlocalversion
           
     - name: Build Kernel
       run: |
