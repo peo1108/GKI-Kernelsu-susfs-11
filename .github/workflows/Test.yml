@@ -130,7 +130,7 @@ jobs:
           
           # Remove check_defconfig
            sed -i 's/check_defconfig//' ./common/build.config.gki
-           sed -i '$s|echo "\$res"|echo "\$res-One-Tea+"|' ./common/scripts/setlocalversion
+           sed -i '$s|echo "\$res"|echo "\$res-Duyn🦋👅💦-Tea+"|' ./common/scripts/setlocalversion
           
     - name: Build Kernel
       run: |
